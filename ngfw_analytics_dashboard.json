@@ -1,0 +1,1289 @@
+{
+  "title": "NGFW",
+  "description": "Analyzer on NGFW logs",
+  "inputs": {
+    "input_0lH3kkaT": {
+      "options": {
+        "defaultValue": "*",
+        "token": "threat_dest_ip"
+      },
+      "title": "Destination IP",
+      "type": "input.text"
+    },
+    "input_18zgxpP7": {
+      "dataSources": {
+        "primary": "ds_V9Hx6Lro"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "TI_verdict"
+      },
+      "title": "TI Verdicts",
+      "type": "input.multiselect"
+    },
+    "input_22KZUgUL": {
+      "options": {
+        "defaultValue": "*",
+        "token": "dest_ip"
+      },
+      "title": "Destination IP",
+      "type": "input.text"
+    },
+    "input_4uo9DR8G": {
+      "dataSources": {
+        "primary": "ds_B5vvcpjj"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "threat_action"
+      },
+      "title": "Actions",
+      "type": "input.multiselect"
+    },
+    "input_AgweQwK6": {
+      "dataSources": {
+        "primary": "ds_pfQFTp2A"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "threat_TI_verdict"
+      },
+      "title": "TI Verdicts",
+      "type": "input.multiselect"
+    },
+    "input_KKAmIPI1": {
+      "dataSources": {
+        "primary": "ds_rzINlCnF"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "threat_severity"
+      },
+      "title": "Threat Severities",
+      "type": "input.multiselect"
+    },
+    "input_OuQLIlbU": {
+      "containerOptions": {
+        "visibility": {}
+      },
+      "options": {
+        "defaultValue": "2025-04-16T17:59:42.000Z,2025-04-16T17:59:50.000Z",
+        "token": "time"
+      },
+      "title": "Time Range",
+      "type": "input.timerange"
+    },
+    "input_QLFL6p3u": {
+      "dataSources": {
+        "primary": "ds_HOWhgrsl"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "threat_log_subtype"
+      },
+      "title": "Subtypes",
+      "type": "input.multiselect"
+    },
+    "input_S4HxNl2n": {
+      "options": {
+        "defaultValue": "*",
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          },
+          {
+            "label": "Intranet",
+            "value": "(src_ip_type=private AND dest_ip_type=private)"
+          },
+          {
+            "label": "Internet",
+            "value": "(src_ip_type=private AND dest_ip_type=public) OR (src_ip_type=public AND dest_ip_type=private) OR (src_ip_type=public AND dest_ip_type=public)"
+          }
+        ],
+        "token": "threat_connection_type"
+      },
+      "title": "Connection Type",
+      "type": "input.dropdown"
+    },
+    "input_S7FAIX3S": {
+      "dataSources": {
+        "primary": "ds_dLh9ELzJ"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "action"
+      },
+      "title": "Actions",
+      "type": "input.multiselect"
+    },
+    "input_TMEgCUc8": {
+      "options": {
+        "defaultValue": "*",
+        "token": "src_ip"
+      },
+      "title": "Source IP",
+      "type": "input.text"
+    },
+    "input_XJ6lwC4i": {
+      "dataSources": {
+        "primary": "ds_Ui9R8K7p"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "threat_app"
+      },
+      "title": "Applications",
+      "type": "input.multiselect"
+    },
+    "input_YzavMBLt": {
+      "options": {
+        "defaultValue": "*",
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          },
+          {
+            "label": "Intranet",
+            "value": "(src_ip_type=private AND dest_ip_type=private)"
+          },
+          {
+            "label": "Internet",
+            "value": "(src_ip_type=private AND dest_ip_type=public) OR (src_ip_type=public AND dest_ip_type=private) OR (src_ip_type=public AND dest_ip_type=public)"
+          }
+        ],
+        "token": "connection_type"
+      },
+      "title": "Connection Type",
+      "type": "input.dropdown"
+    },
+    "input_sLyob4jJ": {
+      "dataSources": {
+        "primary": "ds_wNYk2EvJ"
+      },
+      "options": {
+        "defaultValue": [
+          "*"
+        ],
+        "items": [
+          {
+            "label": "All",
+            "value": "*"
+          }
+        ],
+        "token": "app"
+      },
+      "title": "Applications",
+      "type": "input.multiselect"
+    },
+    "input_zAFnq1X5": {
+      "options": {
+        "defaultValue": "*",
+        "token": "threat_src_ip"
+      },
+      "title": "Source IP",
+      "type": "input.text"
+    },
+    "input_zsONNcql": {
+      "options": {
+        "defaultValue": "2025-04-16T17:59:42.000Z,2025-04-16T17:59:50.000Z",
+        "token": "threat_time"
+      },
+      "title": "Time Range",
+      "type": "input.timerange"
+    }
+  },
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "earliest": "$global_time.earliest$",
+            "latest": "$global_time.latest$"
+          }
+        }
+      }
+    }
+  },
+  "visualizations": {
+    "viz_4w5bFli2": {
+      "dataSources": {
+        "primary": "ds_0DtULgF0"
+      },
+      "title": "Threats Severities over Time",
+      "type": "splunk.area",
+      "description": "Line chart showing the count of threats at different Palo Alto Networks severity levels over the selected time period. Allows tracking of threat spikes and general trends."
+    },
+    "viz_DpakhYrk": {
+      "containerOptions": {
+        "visibility": {}
+      },
+      "dataSources": {
+        "primary": "ds_r35VIKqC"
+      },
+      "title": "Top destination domains",
+      "type": "splunk.bar",
+      "options": {
+        "xAxisTitleText": "Destination domains"
+      },
+      "description": "Displays the most frequently accessed destination domains by users or systems within the network. Helps identify web usage trends and potential command-and-control (C2) domains."
+    },
+    "viz_GeGs3GGj": {
+      "dataSources": {
+        "primary": "ds_RP5IDbx8"
+      },
+      "options": {
+        "collapseThreshold": 0.01,
+        "labelDisplay": "valuesAndPercentage",
+        "showDonutHole": true
+      },
+      "title": "Threats by Severities",
+      "type": "splunk.pie",
+      "description": "Displays the percentage distribution of detected threats by severity levels defined by Palo Alto Networks."
+    },
+    "viz_H0eMdaJd": {
+      "containerOptions": {
+        "visibility": {}
+      },
+      "dataSources": {
+        "primary": "ds_6lgONcQw"
+      },
+      "title": "Connections from High-Risk Countries",
+      "type": "splunk.table",
+      "description": "Details connections originating from countries listed in lookup. Allows focused review of potentially dangerous communications."
+    },
+    "viz_NGDyq4sX": {
+      "containerOptions": {
+        "visibility": {}
+      },
+      "dataSources": {
+        "primary": "ds_kYJgRf3F"
+      },
+      "title": "Top source domains",
+      "type": "splunk.bar",
+      "options": {
+        "xAxisTitleText": "Source domains"
+      },
+      "description": "Shows domains associated with source IP addresses generating traffic, or domains from which traffic originates towards the organization's public resources."
+    },
+    "viz_Qnb3LF1V": {
+      "dataSources": {
+        "primary": "ds_k6iJZEIy"
+      },
+      "options": {
+        "labelDisplay": "valuesAndPercentage",
+        "showDonutHole": true
+      },
+      "title": "Threats by TI verdicts",
+      "type": "splunk.pie",
+      "description": "Demonstrates how detected threats are distributed according to TI verdicts for IPs associated with the threats."
+    },
+    "viz_SxnkxQyS": {
+      "dataSources": {
+        "primary": "ds_1GV9hpnZ"
+      },
+      "title": "TI Verdicts over Time",
+      "type": "splunk.area",
+      "description": "Displays how the count of threats with different TI verdicts has changed over time. Helps assess the evolution of the threat landscape."
+    },
+    "viz_fWDUj1B8": {
+      "dataSources": {
+        "primary": "ds_hobL04RE"
+      },
+      "title": "Detailed Threat Event Information",
+      "type": "splunk.table",
+      "options": {
+        "showRowNumbers": true,
+        "headerVisibility": "fixed",
+        "tableFormat": {
+          "headerAlign": "center",
+          "align": "center"
+        },
+        "columnFormat": {
+          "Action": {
+            "data": "> table | seriesByName(\"Action\") | formatByType(ActionColumnFormatEditorConfig)",
+            "align": "auto",
+            "headerAlign": "auto",
+            "textOverflow": "break-word",
+            "rowColors": "> table | seriesByName('Action') | pick(ActionRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"Action\") | matchValue(ActionRowBackgroundColorsEditorConfig)"
+          },
+          "Severity": {
+            "data": "> table | seriesByName(\"Severity\") | formatByType(SeverityColumnFormatEditorConfig)",
+            "align": "auto",
+            "headerAlign": "auto",
+            "textOverflow": "break-word",
+            "rowColors": "> table | seriesByName('Severity') | pick(SeverityRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"Severity\") | matchValue(SeverityRowBackgroundColorsEditorConfig)"
+          },
+          "TI Verdict": {
+            "data": "> table | seriesByName(\"TI Verdict\") | formatByType(TI_VerdictColumnFormatEditorConfig)",
+            "align": "auto",
+            "headerAlign": "auto",
+            "textOverflow": "break-word",
+            "rowColors": "> table | seriesByName('TI Verdict') | pick(TI_VerdictRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"TI Verdict\") | matchValue(TI_VerdictRowBackgroundColorsEditorConfig)"
+          }
+        }
+      },
+      "context": {
+        "ActionColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "ActionRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "ActionRowBackgroundColorsEditorConfig": [
+          {
+            "match": "blocked",
+            "value": "#FE3A3A"
+          },
+          {
+            "match": "allowed",
+            "value": "#088F44"
+          }
+        ],
+        "SeverityColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "SeverityRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "SeverityRowBackgroundColorsEditorConfig": [
+          {
+            "match": "informational",
+            "value": "#0066ff"
+          },
+          {
+            "match": "low",
+            "value": "#c1e302"
+          },
+          {
+            "match": "medium",
+            "value": "#d97a0d"
+          },
+          {
+            "match": "high",
+            "value": "#d94e17"
+          },
+          {
+            "match": "critical",
+            "value": "#d41f1f"
+          }
+        ],
+        "TI_VerdictColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "TI_VerdictRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "TI_VerdictRowBackgroundColorsEditorConfig": [
+          {
+            "match": "Malicious",
+            "value": "#FE3A3A"
+          },
+          {
+            "match": "Suspicious",
+            "value": "#FFA857"
+          },
+          {
+            "match": "Harmless",
+            "value": "#088f44"
+          },
+          {
+            "match": "Unknown",
+            "value": "#0066ff"
+          }
+        ]
+      },
+      "description": "Provides a comprehensive table with details of threat events"
+    },
+    "viz_kt43Izkq": {
+      "containerOptions": {
+        "visibility": {}
+      },
+      "dataSources": {
+        "primary": "ds_ior8g0it"
+      },
+      "description": "Overview of public source IPs with enrichment from threat intelligence feeds, helping identify high-risk targets based on connection volume and TI scoring",
+      "options": {
+        "bubbleSizeMax": 50,
+        "bubbleSizeMethod": "area",
+        "bubbleSizeMin": 10,
+        "category": "> primary | seriesByIndex(0)",
+        "legendDisplay": "right",
+        "legendTruncation": "ellipsisMiddle",
+        "size": "> primary | seriesByIndex(3)",
+        "x": "> primary | seriesByIndex(1)",
+        "xAxisAbbreviation": "off",
+        "xAxisLabelRotation": 0,
+        "xAxisLabelVisibility": "show",
+        "xAxisMajorTickVisibility": "show",
+        "xAxisScale": "linear",
+        "xAxisTitleText": "VT Score of Source IP",
+        "xAxisTitleVisibility": "show",
+        "y": "> primary | seriesByIndex(2)",
+        "yAxisAbbreviation": "auto",
+        "yAxisScale": "linear",
+        "yAxisTitleText": "AbuseIPDB Score of Source IP",
+        "yAxisTitleVisibility": "show"
+      },
+      "title": "Source IPs Overview",
+      "type": "splunk.bubble"
+    },
+    "viz_sHhSeh73": {
+      "containerOptions": {
+        "visibility": {}
+      },
+      "context": {
+        "dataColorsGradientConfig": {
+          "colors": [
+            "#ffffff",
+            "#af575a"
+          ]
+        }
+      },
+      "dataSources": {
+        "primary": "ds_6NujSiII"
+      },
+      "description": "Displays the geographic distribution of public IPs involved in NGFW-detected events to highlight global activity patterns.",
+      "options": {
+        "center": [
+          41.33567709473601,
+          11.425778750081236
+        ],
+        "layers": [
+          {
+            "additionalTooltipFields": [
+              "Country",
+              "total"
+            ],
+            "areaValues": "> primary | seriesByName('total')",
+            "choroplethOpacity": 0.75,
+            "dataColors": "> areaValues | gradient(dataColorsGradientConfig)",
+            "type": "choropleth"
+          }
+        ],
+        "showBaseLayer": true,
+        "zoom": 1
+      },
+      "title": "Communications with countries",
+      "type": "splunk.map"
+    },
+    "viz_v8IvT5qS": {
+      "containerOptions": {
+        "visibility": {}
+      },
+      "dataSources": {
+        "primary": "ds_NZtnTILg"
+      },
+      "description": "Overview of public destination IPs with enrichment from threat intelligence feeds, helping identify high-risk targets based on connection volume and TI scoring",
+      "options": {
+        "category": "> primary | seriesByName('dest_ip')",
+        "size": "> primary | seriesByName('Total_Connections_To_IP')",
+        "x": "> primary | seriesByName('dest_VT_percentage_score')",
+        "xAxisLabelVisibility": "show",
+        "xAxisMajorTickVisibility": "show",
+        "xAxisTitleText": "VT Score of Destination IP",
+        "y": "> primary | seriesByName('dest_AbuseIPDB_score')",
+        "yAxisTitleText": "AbuseIPDB Score of Destination IP"
+      },
+      "title": "Destination IPs Overview",
+      "type": "splunk.bubble"
+    },
+    "viz_2JCStZvR": {
+      "type": "splunk.pie",
+      "title": "Top 10 most used applications",
+      "containerOptions": {},
+      "showProgressBar": false,
+      "showLastUpdated": false,
+      "dataSources": {
+        "primary": "ds_a6LF2bGn"
+      },
+      "options": {
+        "showDonutHole": true,
+        "labelDisplay": "valuesAndPercentage"
+      },
+      "description": "Shows the 10 most frequently used applications (as classified by Palo Alto Networks) by connection count."
+    },
+    "viz_hm2XrS19": {
+      "type": "splunk.pie",
+      "dataSources": {
+        "primary": "ds_rm2683m5"
+      },
+      "title": "Statistic by the action",
+      "description": "Shows the ratio of allowed traffic to blocked traffic",
+      "options": {
+        "showDonutHole": true,
+        "labelDisplay": "valuesAndPercentage"
+      }
+    },
+    "viz_630G2PjI": {
+      "type": "splunk.pie",
+      "dataSources": {
+        "primary": "ds_YlHvjXW3"
+      },
+      "title": "Session End Reason Distribution",
+      "options": {
+        "showDonutHole": true,
+        "labelDisplay": "valuesAndPercentage"
+      },
+      "description": "Visualizes the primary reasons for network session termination. Aids in diagnosing network issues."
+    },
+    "viz_TlyIUlVu": {
+      "type": "splunk.table",
+      "title": "Network Connection Details",
+      "description": "Shows the details abount network connections based on NGFW logs",
+      "dataSources": {
+        "primary": "ds_zOfZgbvQ"
+      },
+      "options": {
+        "showRowNumbers": true,
+        "headerVisibility": "fixed",
+        "tableFormat": {
+          "headerAlign": "center",
+          "align": "center"
+        },
+        "columnFormat": {
+          "Action": {
+            "data": "> table | seriesByName(\"Action\") | formatByType(ActionColumnFormatEditorConfig)",
+            "align": "auto",
+            "headerAlign": "auto",
+            "textOverflow": "break-word",
+            "rowColors": "> table | seriesByName('Action') | pick(ActionRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"Action\") | matchValue(ActionRowBackgroundColorsEditorConfig)"
+          },
+          "TI Verdict": {
+            "data": "> table | seriesByName(\"TI Verdict\") | formatByType(TI_VerdictColumnFormatEditorConfig)",
+            "align": "auto",
+            "headerAlign": "auto",
+            "textOverflow": "break-word",
+            "rowColors": "> table | seriesByName('TI Verdict') | pick(TI_VerdictRowColorsEditorConfig)",
+            "rowBackgroundColors": "> table | seriesByName(\"TI Verdict\") | matchValue(TI_VerdictRowBackgroundColorsEditorConfig)"
+          }
+        }
+      },
+      "context": {
+        "ActionColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "ActionRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "ActionRowBackgroundColorsEditorConfig": [
+          {
+            "match": "blocked",
+            "value": "#FE3A3A"
+          },
+          {
+            "match": "allowed",
+            "value": "#088f44"
+          }
+        ],
+        "TI_VerdictColumnFormatEditorConfig": {
+          "string": {
+            "unitPosition": "after"
+          }
+        },
+        "TI_VerdictRowColorsEditorConfig": [
+          "#ffffff"
+        ],
+        "TI_VerdictRowBackgroundColorsEditorConfig": [
+          {
+            "match": "Malicious",
+            "value": "#FE3A3A"
+          },
+          {
+            "match": "Suspicious",
+            "value": "#ffa857"
+          },
+          {
+            "match": "Harmless",
+            "value": "#088f44"
+          },
+          {
+            "match": "Unknown",
+            "value": "#0066ff"
+          }
+        ]
+      }
+    }
+  },
+  "dataSources": {
+    "ds_0DtULgF0": {
+      "name": "Threats Severities over Time",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat\n| search severity IN ($threat_severity$) AND eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| timechart count by severity",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_1GV9hpnZ": {
+      "name": "Threats TI verdicts over Time",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat\n| search severity IN ($threat_severity$) AND eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| timechart count by eventtype",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_5fGUuNKC": {
+      "name": "Bubble Public Ips",
+      "options": {
+        "query": "index=ngfw \n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| eval ip1=if(src_ip_type=\"public\", src_ip, null())\n| eval ip2=if(dest_ip_type=\"public\", dest_ip, null())\n| table ip1 ip2\n| eval ip=mvappend(ip1, ip2)\n| mvexpand ip\n| search ip=*\n| lookup final_TI_info.csv ip OUTPUT vt_percentage_score abuseConfidenceScore\n| stats count as Total_Connections by ip, vt_percentage_score, abuseConfidenceScore\n| table ip vt_percentage_score abuseConfidenceScore Total_Connections",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_6NujSiII": {
+      "name": "Communications with countries search",
+      "options": {
+        "query": "index=ngfw \n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| eval ip1=if(src_ip_type=\"public\", src_ip, null())\n| eval ip2=if(dest_ip_type=\"public\", dest_ip, null())\n| table ip1 ip2\n| eval ip=mvappend(ip1, ip2)\n| mvexpand ip\n| search ip=*\n| iplocation ip\n| stats count as total by Country \n| geom geo_countries featureIdField=Country",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_6lgONcQw": {
+      "name": "Connection from suspicious countries",
+      "options": {
+        "query": "index=ngfw \n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| lookup suspicious_countries.csv Country as src_geo_country OUTPUT Suspicious\n| where isnotnull(Suspicious) \n| stats count as Total_Connections_Country, values(src_ip) as \"Source IPs\", values(eventtype) as \"TI verdict\" by src_geo_country\n| sort Total_Connections_Country\n| rename src_geo_country AS Country, Total_Connections_Country AS \"Total Connections From Country\"",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_B5vvcpjj": {
+      "name": "Dynamic Threat Actions",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat \n| search eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND severity IN ($threat_severity$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| stats count by action \n| fields action",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_HOWhgrsl": {
+      "name": "Dynamic Threat Log Subtypes",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat \n| search eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND severity IN ($threat_severity$) AND $threat_connection_type$\n| stats count by log_subtype \n| fields log_subtype",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_NZtnTILg": {
+      "name": "Destination IPs Overview Bubble",
+      "options": {
+        "query": "index=ngfw dest_ip_type=public\n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| stats count as Total_Connections_To_IP by dest_ip, dest_AbuseIPDB_score, dest_VT_percentage_score\n| table dest_ip dest_VT_percentage_score dest_AbuseIPDB_score Total_Connections_To_IP",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_RP5IDbx8": {
+      "name": "Threats by Severities",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat\n| search severity IN ($threat_severity$) AND eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| chart count by severity",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_Ui9R8K7p": {
+      "name": "Dynamic Threat Apps",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat \n| search eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND severity IN ($threat_severity$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| stats count by app \n| fields app",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_V9Hx6Lro": {
+      "name": "Dynamic TI Verdicts",
+      "options": {
+        "query": "index=ngfw \n| search src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND app IN ($app$) AND $connection_type$\n| stats count by eventtype \n| fields eventtype",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_dLh9ELzJ": {
+      "name": "Dynamic Actions",
+      "options": {
+        "query": "index=ngfw \n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND app IN ($app$) AND $connection_type$\n| stats count by action \n| fields action",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_hobL04RE": {
+      "name": "Deatails about threat connections",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat\n| search severity IN ($threat_severity$) AND eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| fillnull value=\"Private IP\" src_AbuseIPDB_score src_VT_percentage_score dest_AbuseIPDB_score dest_VT_percentage_score\n| eval formatted_time=strftime(_time, \"%Y-%m-%d %H:%M:%S\")\n| table formatted_time severity eventtype src_ip src_port src_AbuseIPDB_score src_VT_percentage_score dest_ip dest_port dest_AbuseIPDB_score dest_VT_percentage_score action rule app log_subtype misc\n| rename formatted_time AS \"Time\" \n| rename severity AS \"Severity\" \n| rename src_ip AS \"Source IP\" \n| rename src_port AS \"Source port\" \n| rename dest_ip AS \"Destination IP\" \n| rename dest_port AS \"Destination port\" \n| rename action AS \"Action\" \n| rename rule AS \"Rule\" \n| rename app AS \"Application\" \n| rename log_subtype AS \"Log Subtype\" \n| rename misc AS \"Triggered value\"\n| rename eventtype AS \"TI Verdict\"\n| rename src_AbuseIPDB_score AS \"AbuseIPDB Score for Source\", src_VT_percentage_score AS \"VT Score for Source\"\n| rename dest_AbuseIPDB_score AS \"AbuseIPDB Score for Destination\", dest_VT_percentage_score AS \"VT Score for Destination\"",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_ior8g0it": {
+      "name": "Source IPs Overview Bubble",
+      "options": {
+        "query": "index=ngfw src_ip_type=public\n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| stats count as Total_Connections_From_IP by src_ip, src_AbuseIPDB_score, src_VT_percentage_score\n| table src_ip src_VT_percentage_score src_AbuseIPDB_score Total_Connections_From_IP",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_k6iJZEIy": {
+      "name": "Threads by TI verdicts",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat\n| search severity IN ($threat_severity$) AND eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| stats count by eventtype\n| sort -eventtype",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_kYJgRf3F": {
+      "name": "Top source domains",
+      "options": {
+        "query": "index=ngfw\n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| top src_domain",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_pfQFTp2A": {
+      "name": "Dymanic Threat TI Verdicts",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat \n| search severity IN ($threat_severity$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| stats count by eventtype \n| fields eventtype",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_r35VIKqC": {
+      "name": "To destination domains",
+      "options": {
+        "query": "index=ngfw\n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| top dest_domain",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_rzINlCnF": {
+      "name": "Dynamic Threat Severities",
+      "options": {
+        "query": "index=ngfw extracted_sourcetype=pan:threat \n| search eventtype IN ($threat_TI_verdict$) AND src_ip=$threat_src_ip$ AND dest_ip=$threat_dest_ip$ AND action IN ($threat_action$) AND app IN ($threat_app$) AND log_subtype IN ($threat_log_subtype$) AND $threat_connection_type$\n| stats count by severity \n| fields severity",
+        "queryParameters": {
+          "earliest": "$threat_time.earliest$",
+          "latest": "$threat_time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_wNYk2EvJ": {
+      "name": "Dynamic Applications",
+      "options": {
+        "query": "index=ngfw\n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$\n| stats count by app \n| fields app",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "type": "ds.search"
+    },
+    "ds_a6LF2bGn": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=ngfw \n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| stats count as Total_Connections by app\n| sort -Total_Connections\n| head 10",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "name": "Top Applications"
+    },
+    "ds_rm2683m5": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=\"ngfw\"\n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| stats count by action\n| sort -count",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "name": "Pie chart Actions ratio"
+    },
+    "ds_YlHvjXW3": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=\"ngfw\"\n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| stats count by session_end_reason\n| sort -count",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "name": "Session end reasons ration"
+    },
+    "ds_zOfZgbvQ": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=\"ngfw\"  \n| search eventtype IN ($TI_verdict$) AND src_ip=$src_ip$ AND dest_ip=$dest_ip$ AND action IN ($action$) AND $connection_type$ AND app IN ($app$)\n| fillnull value=\"Private IP\" src_AbuseIPDB_score src_VT_percentage_score dest_AbuseIPDB_score dest_VT_percentage_score\n| eval formatted_time=strftime(_time, \"%Y-%m-%d %H:%M:%S\")\n| table formatted_time eventtype src_AbuseIPDB_score src_VT_percentage_score dest_ip dest_port dest_AbuseIPDB_score dest_VT_percentage_score action rule app\n| rename formatted_time AS \"Time\" \n| rename severity AS \"Severity\" \n| rename src_ip AS \"Source IP\" \n| rename src_port AS \"Source port\" \n| rename dest_ip AS \"Destination IP\" \n| rename dest_port AS \"Destination port\" \n| rename action AS \"Action\" \n| rename rule AS \"Rule\" \n| rename app AS \"Application\"\n| rename eventtype AS \"TI Verdict\"\n| rename src_AbuseIPDB_score AS \"AbuseIPDB Score for Source\", src_VT_percentage_score AS \"VT Score for Source\"\n| rename dest_AbuseIPDB_score AS \"AbuseIPDB Score for Destination\", dest_VT_percentage_score AS \"VT Score for Destination\"",
+        "queryParameters": {
+          "earliest": "$time.earliest$",
+          "latest": "$time.latest$"
+        }
+      },
+      "name": "Details of all connections"
+    }
+  },
+  "layout": {
+    "globalInputs": [],
+    "layoutDefinitions": {
+      "layout_1": {
+        "options": {
+          "height": 2200,
+          "width": 2000
+        },
+        "structure": [
+          {
+            "item": "input_zsONNcql",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 50,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "viz_GeGs3GGj",
+            "position": {
+              "h": 350,
+              "w": 630,
+              "x": 10,
+              "y": 90
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_Qnb3LF1V",
+            "position": {
+              "h": 350,
+              "w": 630,
+              "x": 10,
+              "y": 450
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_fWDUj1B8",
+            "position": {
+              "h": 677,
+              "w": 1980,
+              "x": 10,
+              "y": 810
+            },
+            "type": "block"
+          },
+          {
+            "item": "input_KKAmIPI1",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 260,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_AgweQwK6",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 470,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "viz_4w5bFli2",
+            "position": {
+              "h": 350,
+              "w": 1340,
+              "x": 650,
+              "y": 90
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_SxnkxQyS",
+            "position": {
+              "h": 350,
+              "w": 1340,
+              "x": 650,
+              "y": 450
+            },
+            "type": "block"
+          },
+          {
+            "item": "input_S4HxNl2n",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 680,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_zAFnq1X5",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 890,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_0lH3kkaT",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 1100,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_4uo9DR8G",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 1520,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_XJ6lwC4i",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 1310,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_QLFL6p3u",
+            "position": {
+              "h": 80,
+              "w": 200,
+              "x": 1730,
+              "y": 0
+            },
+            "type": "input"
+          }
+        ],
+        "type": "absolute"
+      },
+      "layout_5VYW7NAV": {
+        "options": {
+          "height": 2550,
+          "width": 2000
+        },
+        "structure": [
+          {
+            "item": "input_OuQLIlbU",
+            "position": {
+              "h": 80,
+              "w": 270,
+              "x": 50,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "viz_kt43Izkq",
+            "position": {
+              "h": 350,
+              "w": 985,
+              "x": 10,
+              "y": 80
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_v8IvT5qS",
+            "position": {
+              "h": 350,
+              "w": 985,
+              "x": 1000,
+              "y": 80
+            },
+            "type": "block"
+          },
+          {
+            "item": "input_18zgxpP7",
+            "position": {
+              "h": 80,
+              "w": 270,
+              "x": 310,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_YzavMBLt",
+            "position": {
+              "h": 80,
+              "w": 270,
+              "x": 570,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_TMEgCUc8",
+            "position": {
+              "h": 80,
+              "w": 270,
+              "x": 830,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_22KZUgUL",
+            "position": {
+              "h": 80,
+              "w": 270,
+              "x": 1090,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_S7FAIX3S",
+            "position": {
+              "h": 80,
+              "w": 270,
+              "x": 1350,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "input_sLyob4jJ",
+            "position": {
+              "h": 80,
+              "w": 270,
+              "x": 1610,
+              "y": 0
+            },
+            "type": "input"
+          },
+          {
+            "item": "viz_sHhSeh73",
+            "position": {
+              "h": 770,
+              "w": 1080,
+              "x": 10,
+              "y": 440
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_DpakhYrk",
+            "position": {
+              "h": 400,
+              "w": 980,
+              "x": 10,
+              "y": 1220
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_NGDyq4sX",
+            "position": {
+              "h": 400,
+              "w": 988,
+              "x": 996,
+              "y": 1220
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_H0eMdaJd",
+            "position": {
+              "h": 770,
+              "w": 890,
+              "x": 1100,
+              "y": 440
+            },
+            "type": "block"
+          },
+          {
+            "item": "viz_2JCStZvR",
+            "type": "block",
+            "position": {
+              "x": 10,
+              "y": 1630,
+              "w": 650,
+              "h": 380
+            }
+          },
+          {
+            "item": "viz_hm2XrS19",
+            "type": "block",
+            "position": {
+              "x": 670,
+              "y": 1630,
+              "w": 650,
+              "h": 380
+            }
+          },
+          {
+            "item": "viz_630G2PjI",
+            "type": "block",
+            "position": {
+              "x": 1330,
+              "y": 1630,
+              "w": 650,
+              "h": 380
+            }
+          },
+          {
+            "item": "viz_TlyIUlVu",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 2020,
+              "w": 1980,
+              "h": 490
+            }
+          }
+        ],
+        "type": "absolute"
+      }
+    },
+    "options": {},
+    "tabs": {
+      "items": [
+        {
+          "label": "NGFW logs analytics and TI info",
+          "layoutId": "layout_5VYW7NAV"
+        },
+        {
+          "label": "NGFW Threats and TI info",
+          "layoutId": "layout_1"
+        }
+      ]
+    }
+  }
+}
