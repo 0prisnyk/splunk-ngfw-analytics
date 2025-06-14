@@ -94,7 +94,7 @@ index=ngfw (src_ip_type=public OR dest_ip_type=public)
 | outputlookup final_TI_info.csv
 ```
 
-###### 4.2.2 Збагачення через VirusTotal (запланований пошук)
+###### 4.2.2 Збагачення через VirusTotal (запланований пошук кожних 3 хвилини, щоб не перевищити ліміти VT)
 
 ```splunk
 | inputlookup final_TI_info.csv
