@@ -1,45 +1,45 @@
-# Комплексна аналітика журналів NGFW у Splunk
+# Comprehensive NGFW Log Analytics in Splunk
 
-Цей репозиторій містить ресурси для відтворення системи комплексної аналітики на основі журналів подій Next-Generation Firewall (NGFW). Проєкт реалізовано на платформі **Splunk** з використанням **Splunk Dashboard Studio**.
+This repository contains resources for reproducing a comprehensive analytics system based on Next-Generation Firewall (NGFW) event logs. The project is implemented on the **Splunk** platform using **Splunk Dashboard Studio**.
 
-## Опис проєкту
+## Project Description
 
-Метою проєкту є розробка підходу до комплексного аналізу журналів NGFW для покращення процесу виявлення загроз. Система включає механізми збагачення вихідних логів даними з зовнішніх джерел та їх подальшу візуалізацію на інтерактивному дашборді.
+The goal of the project is to develop an approach for comprehensive analysis of NGFW logs to improve the threat detection process. The system includes mechanisms for enriching raw logs with data from external sources and their subsequent visualization on an interactive dashboard.
 
-## Структура дашборду
+## Dashboard Structure
 
-Дашборд має дворівневу структуру і складається з наступних вкладок:
+The dashboard has a two-level structure and consists of the following tabs:
 
-1. **Вкладка загального аналізу трафіку та збагаченої інформації**
-   - Надає загальний огляд мережевої активності.
-   - Візуалізує дані про публічні IP-адреси джерела та призначення з їхніми рейтингами TI.
-   - Відображає географічний розподіл комунікацій, топ доменів, додатків та статистику за діями NGFW.
+1. **General traffic analysis and enriched information tab**
+   - Provides an overview of network activity.
+   - Visualizes data about public source and destination IP addresses with their TI ratings.
+   - Displays the geographical distribution of communications, top domains, applications, and NGFW action statistics.
 
-2. **Вкладка детального аналізу загроз**
-   - Призначена для глибокого аналізу подій, ідентифікованих як загрози.
-   - Відображає розподіл загроз за рівнями серйозності та вердиктами TI.
-   - Показує динаміку загроз у часі та надає детальну таблицю для розслідування інцидентів.
+2. **Detailed threat analysis tab**
+   - Designed for in-depth analysis of events identified as threats.
+   - Shows the distribution of threats by severity levels and TI verdicts.
+   - Displays the dynamics of threats over time and provides a detailed table for incident investigation.
 
-## Як відтворити
+## How to Reproduce
 
-### Крок 1: Передумови
+### Step 1: Prerequisites
 
-1. Встановлена та налаштована платформа **Splunk Enterprise**.
-2. Встановлені додатки з Splunkbase:
+1. Installed and configured **Splunk Enterprise** platform.
+2. Installed apps from Splunkbase:
    - **AbuseIPDB App for Splunk**
    - **VT4Splunk (VirusTotal App)**
-3. Отримані та налаштовані **API ключі** для AbuseIPDB та VirusTotal у відповідних додатках.
+3. Obtained and configured **API keys** for AbuseIPDB and VirusTotal in the corresponding apps.
 
-### Крок 2: Завантаження даних
+### Step 2: Data Upload
 
-1. Підготуйте власні журнали NGFW у форматі **CSV**.
-2. У веб-інтерфейсі Splunk перейдіть до `Settings > Add Data`.
-3. Завантажте ваш CSV-файл, вказавши для нього `sourcetype=csv`.
-4. Створіть новий індекс з назвою `ngfw` та збережіть дані в нього.
+1. Prepare your own NGFW logs in **CSV** format.
+2. In the Splunk web interface, go to `Settings > Add Data`.
+3. Upload your CSV file, specifying `sourcetype=csv` for it.
+4. Create a new index named `ngfw` and save the data into it.
 
-### Крок 3: Створення розрахункових полів (Calculated Fields)
+### Step 3: Creating Calculated Fields
 
-Перейдіть до `Settings > Fields > Calculated Fields` та створіть два поля:
+Go to `Settings > Fields > Calculated Fields` and create two fields:
 
 - **dest_ip_type**:
   ```splunk
@@ -51,13 +51,13 @@
   if(cidrmatch("10.0.0.0/8", src_ip) OR cidrmatch("192.168.0.0/16", src_ip) OR cidrmatch("172.16.0.0/12", src_ip) OR cidrmatch("127.0.0.0/8", src_ip) OR cidrmatch("169.254.0.0/16", src_ip), "private", "public")
   ```
 
-### Крок 4: Створення та налаштування лукапів
+### Step 4: Creating and Configuring Lookups
 
-#### 4.1 Статичний лукап
+#### 4.1 Static Lookup
 
-- Імпортуйте файл `suspicious_countries.csv` у Splunk.
+- Import the `suspicious_countries.csv` file into Splunk.
 
-#### 4.2 Динамічні лукапи
+#### 4.2 Dynamic Lookups
 
 ##### `ip_candidates.csv`
 
@@ -85,7 +85,7 @@ index=ngfw (src_ip_type=public OR dest_ip_type=public)
 
 ##### `final_TI_info.csv`
 
-###### 4.2.1 Збагачення через AbuseIPDB
+###### 4.2.1 Enrichment via AbuseIPDB
 
 ```splunk
 | inputlookup ip_candidates.csv
@@ -94,7 +94,7 @@ index=ngfw (src_ip_type=public OR dest_ip_type=public)
 | outputlookup final_TI_info.csv
 ```
 
-###### 4.2.2 Збагачення через VirusTotal (запланований пошук кожних 3 хвилини, щоб не перевищити ліміти VT)
+###### 4.2.2 Enrichment via VirusTotal (scheduled search every 3 minutes to avoid exceeding VT limits)
 
 ```splunk
 | inputlookup final_TI_info.csv
@@ -109,7 +109,7 @@ index=ngfw (src_ip_type=public OR dest_ip_type=public)
 | outputlookup final_TI_info.csv append=false
 ```
 
-###### 4.2.3 Фіналізація TI-інформації
+###### 4.2.3 Finalizing TI Information
 
 ```splunk
 | inputlookup final_TI_info.csv
@@ -123,21 +123,21 @@ index=ngfw (src_ip_type=public OR dest_ip_type=public)
 | outputlookup final_TI_info.csv
 ```
 
-### Крок 5: Налаштування автоматичних лукапів
+### Step 5: Configuring Automatic Lookups
 
-Перейдіть до `Settings > Lookups > Automatic lookups` та створіть чотири правила:
+Go to `Settings > Lookups > Automatic lookups` and create four rules:
 
-1. **Геолокація `src_ip`**:
+1. **Geolocation `src_ip`**:
    - Lookup table: `public_ips_location.csv`
    - Input: `ip = src_ip`
    - Output: `Country = src_geo_country`
 
-2. **Геолокація `dest_ip`**:
+2. **Geolocation `dest_ip`**:
    - Lookup table: `public_ips_location.csv`
    - Input: `ip = dest_ip`
    - Output: `Country = dest_geo_country`
 
-3. **TI-дані `src_ip`**:
+3. **TI data `src_ip`**:
    - Lookup table: `final_TI_info.csv`
    - Input: `ip = src_ip`
    - Output:
@@ -146,7 +146,7 @@ index=ngfw (src_ip_type=public OR dest_ip_type=public)
      - `vt_percentage_score = src_VT_percentage_score`
      - `domain = src_domain`
 
-4. **TI-дані `dest_ip`**:
+4. **TI data `dest_ip`**:
    - Lookup table: `final_TI_info.csv`
    - Input: `ip = dest_ip`
    - Output:
@@ -155,37 +155,37 @@ index=ngfw (src_ip_type=public OR dest_ip_type=public)
      - `vt_percentage_score = dest_VT_percentage_score`
      - `domain = dest_domain`
 
-### Крок 6: Створення типів подій (Event Types)
+### Step 6: Creating Event Types
 
-Перейдіть до `Settings > Event types` та створіть чотири типи подій з відповідними запитами та пріоритетами:
+Go to `Settings > Event types` and create four event types with the corresponding queries and priorities:
 
-- **Malicious** (Пріоритет: 1):
+- **Malicious** (Priority: 1):
   ```splunk
   index=ngfw (src_TI_verdict="Malicious" OR dest_TI_verdict="Malicious")
   ```
 
-- **Suspicious** (Пріоритет: 2):
+- **Suspicious** (Priority: 2):
   ```splunk
   index=ngfw (src_TI_verdict="Suspicious" OR dest_TI_verdict="Suspicious") AND NOT (src_TI_verdict="Malicious" OR dest_TI_verdict="Malicious")
   ```
 
-- **Harmless** (Пріоритет: 3):
+- **Harmless** (Priority: 3):
   ```splunk
   index=ngfw (src_TI_verdict="Harmless" OR dest_TI_verdict="Harmless") AND NOT (src_TI_verdict="Malicious" OR dest_TI_verdict="Malicious" OR src_TI_verdict="Suspicious" OR dest_TI_verdict="Suspicious")
   ```
 
-- **Unknown** (Пріоритет: 4):
+- **Unknown** (Priority: 4):
   ```splunk
   index=ngfw NOT (src_TI_verdict=* OR dest_TI_verdict=*)
   ```
 
-### Крок 7: Імпорт дашборду
+### Step 7: Importing the Dashboard
 
-1. Перейдіть до розділу `Dashboards` у Splunk.
-2. Натисніть `Create New Dashboard`.
-3. Виберіть **Dashboard Studio**.
-4. Відкрийте вкладку `Source` (</>).
-5. Вставте вміст файлу `ngfw_analytics_dashboard.json` з репозиторію.
-6. Збережіть дашборд.
+1. Go to the `Dashboards` section in Splunk.
+2. Click `Create New Dashboard`.
+3. Select **Dashboard Studio**.
+4. Open the `Source` (</>) tab.
+5. Paste the contents of the `ngfw_analytics_dashboard.json` file from the repository.
+6. Save the dashboard.
 
-Після цього дашборд буде готовий до використання та автоматично заповниться даними після запуску пошуків і формування лукапів.
+After this, the dashboard will be ready for use and will automatically populate with data once searches are executed and lookups are generated.
